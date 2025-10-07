@@ -19,12 +19,14 @@ public class SimulatorUI : MonoBehaviour
 
     private void Start()
     {
+        hero = new Hero();
+
         var level = hero.Level(hero.TotalExp, out var next);
         TxtLevel.text = level.ToString();
         TxtExp.text = $"{hero.TotalExp}/{next}";
 
-        TxtStr.text = (hero.Strength.basicSTR + hero.Strength.bonusSTR).ToString();
-        TxtInt.text = (hero.Intelligence.basicINT + hero.Intelligence.bonusINT).ToString();
+        TxtStr.text = $"{hero.Strength.basicSTR} + { hero.Strength.bonusSTR}";
+        TxtInt.text = $"{hero.Intelligence.basicINT} + {hero.Intelligence.bonusINT}";
         TxtAtk.text = hero.AttackPower.ToString();
         TxtDef.text = hero.DefencePower.ToString();
         TxtHp.text = hero.HealthPoint.ToString();
