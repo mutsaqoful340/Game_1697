@@ -17,18 +17,28 @@ public class SimulatorUI : MonoBehaviour
 
     public Hero hero;
 
-    private void Start()
+    public void ButExp_Handler()
     {
-        hero = new Hero();
+        hero.TotalExp += 1000;
+        RefreshStatus();
+    }
 
+    public void RefreshStatus()
+    {
         var level = hero.Level(hero.TotalExp, out var next);
         TxtLevel.text = level.ToString();
         TxtExp.text = $"{hero.TotalExp}/{next}";
 
-        TxtStr.text = $"{hero.Strength.basicSTR} + { hero.Strength.bonusSTR}";
+        TxtStr.text = $"{hero.Strength.basicSTR} + {hero.Strength.bonusSTR}";
         TxtInt.text = $"{hero.Intelligence.basicINT} + {hero.Intelligence.bonusINT}";
         TxtAtk.text = hero.AttackPower.ToString();
         TxtDef.text = hero.DefencePower.ToString();
         TxtHp.text = hero.HealthPoint.ToString();
+    }
+
+    private void Start()
+    {
+        hero = new Hero();
+        RefreshStatus();
     }
 }
