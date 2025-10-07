@@ -1,4 +1,5 @@
 using System;
+using UnityEngine.Assertions.Must;
 
 [Serializable]
 public class Hero
@@ -8,8 +9,8 @@ public class Hero
     public string Description;
     public int Speed;
 
-    public int HealthPoint;
-    public int MagicPoint;
+    public UnitPoint HealthPoint;
+    public UnitPoint MagicPoint;
     public int AttackPower;
     public int DefencePower;
     public int TotalExp;
@@ -19,6 +20,30 @@ public class Hero
     // TotalExp
 
     // Properties <- Encapsulation (Teori)
+
+    [Serializable]
+    public struct UnitPoint
+    {
+        public int Current;
+        public int Maximum;
+
+        public new readonly string ToString()
+        {
+            return $"{Current} / {Maximum}";
+        }
+    }
+
+    public Hero()
+    {
+        Uid = 1;
+        Name = "Nobel Knight";
+        Description = "A holy knight form a far land";
+        Speed = 5;
+        Strength = (10, 0);
+        Intelligence = (10, 0);
+        TotalExp = 0;
+    }
+
     public (int basicSTR, int bonusSTR) Strength 
     {  
         get
@@ -37,7 +62,8 @@ public class Hero
             {
                 bonus.Strength = 0;
             }
-            HealthPoint += (baseStr + bonus.Strength) * 350;
+            HealthPoint.Maximum += (baseStr + bonus.Strength) * 350;
+            HealthPoint.Current = HealthPoint.Maximum;
             AttackPower += (baseStr + bonus.Strength) * 10;
             DefencePower += (baseStr + bonus.Strength) * 7;
         }
@@ -61,7 +87,8 @@ public class Hero
             {
                 bonus.Intelligence = 0;
             }
-            MagicPoint += (baseInt + bonus.Intelligence) * 30;
+            MagicPoint.Maximum += (baseInt + bonus.Intelligence) * 30;
+            MagicPoint.Current = MagicPoint.Maximum;
             AttackPower += (baseInt + bonus.Intelligence) * 10;
         }
     }
