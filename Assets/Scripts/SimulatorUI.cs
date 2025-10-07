@@ -23,6 +23,12 @@ public class SimulatorUI : MonoBehaviour
         RefreshStatus();
     }
 
+    private void Start()
+    {
+        hero = new Hero();
+        RefreshStatus();
+    }
+
     public void RefreshStatus()
     {
         var level = hero.Level(hero.TotalExp, out var next);
@@ -34,11 +40,5 @@ public class SimulatorUI : MonoBehaviour
         TxtAtk.text = hero.AttackPower.ToString();
         TxtDef.text = hero.DefencePower.ToString();
         TxtHp.text = hero.HealthPoint.ToString();
-    }
-
-    private void Start()
-    {
-        hero = new Hero();
-        RefreshStatus();
     }
 }
