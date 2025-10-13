@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 public class SimulatorUI : MonoBehaviour
 {
+    [Header("Button Values")]
+    public int HealValue;
+    public int DamageValue;
+
     public Slider BarHp;
     public TextMeshProUGUI TxtHp;
     public TextMeshProUGUI TxtAtk;
@@ -17,28 +21,64 @@ public class SimulatorUI : MonoBehaviour
 
     public Hero hero;
 
-    public void ButExp_Handler()
-    {
-        hero.TotalExp += 1000;
-        RefreshStatus();
-    }
-
     private void Start()
     {
         hero = new Hero();
         RefreshStatus();
+        UpdateCondition();
+        Debug.Log(level);
+    }
+
+    public void ButExp_Handler()
+    {
+        Debug.Log(level); // Level sebelum
+        hero.TotalExp += 1000;
+        if (hero.HasLevelUp(level))
+        {
+            RefreshStatus(); // <<< Level naik
+            UpdateCondition();
+        }
+    }
+
+    public void BtnReset_Handler()
+    {
+        hero = new Hero();
+        UpdateCondition();
+        RefreshStatus();
+    }
+
+    public void BtnDamage_Handler()
+    {
+        hero.Damage = DamageValue;
+        UpdateCondition();
+    }
+
+    public void BtnHeal_Handler()
+    {
+        hero.Damage = HealValue;
+        UpdateCondition();
+    }
+
+    private int level;
+
+    private void UpdateCondition()
+    {
+        TxtHp.text = hero.HealthPoint.ToString();
+        BarHp.value = hero.HealthPoint.Current;
     }
 
     public void RefreshStatus()
     {
-        var level = hero.Level(hero.TotalExp, out var next);
+        level = hero.Level(hero.TotalExp, out var next);
         TxtLevel.text = level.ToString();
         TxtExp.text = $"{hero.TotalExp}/{next}";
 
-        TxtStr.text = $"{hero.Strength.basicSTR} + {hero.Strength.bonusSTR}";
-        TxtInt.text = $"{hero.Intelligence.basicINT} + {hero.Intelligence.bonusINT}";
-        TxtAtk.text = hero.AttackPower.ToString();
-        TxtDef.text = hero.DefencePower.ToString();
-        TxtHp.text = hero.HealthPoint.ToString();
+        TxtStr.text = (hero.Strength.basicSTR + hero.Strength.bonusSTR).ToString();
+        TxtInt.text = (hero.Intelligence.basicINT + hero.Intelligence.bonusINT).ToString();
+        TxtAtk.text = ((int)hero.AttackPower).ToString();
+        TxtDef.text = ((int)hero.DefencePower).ToString();
+
+        BarHp.maxValue = hero.HealthPoint.Maximum;
+        BarHp.minValue = 0;
     }
 }
