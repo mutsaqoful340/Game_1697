@@ -716,7 +716,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Exp
+  m_text: Add Exp
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -743,8 +743,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 80
-  m_fontSizeBase: 80
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1833,7 +1833,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1015964066}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1314088895}
+        m_TargetAssemblyTypeName: SimulatorUI, Assembly-CSharp
+        m_MethodName: BtnReset_Handler
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1015964066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2250,6 +2262,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 245f95291eda97141b1cb0743803f884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HealValue: -1500
+  DamageValue: 1500
   BarHp: {fileID: 1447365147}
   TxtHp: {fileID: 589923646}
   TxtAtk: {fileID: 21269910}
@@ -2973,7 +2987,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1641121456}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1314088895}
+        m_TargetAssemblyTypeName: SimulatorUI, Assembly-CSharp
+        m_MethodName: BtnHeal_Handler
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1641121456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3611,7 +3637,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1924119592}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1314088895}
+        m_TargetAssemblyTypeName: SimulatorUI, Assembly-CSharp
+        m_MethodName: BtnDamage_Handler
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1924119592
 MonoBehaviour:
   m_ObjectHideFlags: 0
