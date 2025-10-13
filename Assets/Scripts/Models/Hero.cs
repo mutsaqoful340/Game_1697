@@ -11,8 +11,8 @@ public class Hero
 
     public UnitPoint HealthPoint;
     public UnitPoint MagicPoint;
-    public int AttackPower;
-    public int DefencePower;
+    public float AttackPower;
+    public float DefencePower;
     public int TotalExp;
 
     // Strenght (HealthPoint, AttackPower, DefencePower)
@@ -64,8 +64,8 @@ public class Hero
             }
             HealthPoint.Maximum += (baseStr + bonus.Strength) * 350;
             HealthPoint.Current = HealthPoint.Maximum;
-            AttackPower += (baseStr + bonus.Strength) * 10;
-            DefencePower += (baseStr + bonus.Strength) * 7;
+            AttackPower += (baseStr + bonus.Strength) * 1.5f;
+            DefencePower += (baseStr + bonus.Strength) * 1.5f;
         }
     }
 
@@ -89,7 +89,7 @@ public class Hero
             }
             MagicPoint.Maximum += (baseInt + bonus.Intelligence) * 30;
             MagicPoint.Current = MagicPoint.Maximum;
-            AttackPower += (baseInt + bonus.Intelligence) * 10;
+            AttackPower += (baseInt + bonus.Intelligence) * 1.5f;
         }
     }
 
@@ -113,5 +113,35 @@ public class Hero
         var level = (int)Math.Pow(exp, 0.25);
         next = (int)Math.Pow(level + 1, 4);
         return level;
+    }
+
+    public bool HasLevelUp(int before)
+    {
+        var after = (int)Math.Pow(TotalExp, 0.25);
+        if (after > before)
+        {
+            var n = after - before;
+            Strength = (n, 0);
+            Intelligence = (n, 0);
+            return true; // Jika naik level
+        }
+        return false; // Jika tidak naik level
+    }
+
+    public float Damage
+    {
+        set
+        {
+            var damage = value - DefencePower;
+            HealthPoint.Current -= (int)damage;
+            if (HealthPoint.Current < 0)
+            {
+                HealthPoint.Current = 0; // Mencegah terjadinya value minus
+            }
+            if (HealthPoint.Current > HealthPoint.Maximum)
+            {
+                HealthPoint.Current = HealthPoint.Maximum;
+            }
+        }
     }
 }
