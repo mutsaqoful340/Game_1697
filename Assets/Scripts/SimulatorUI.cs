@@ -19,6 +19,9 @@ public class SimulatorUI : MonoBehaviour
     public TextMeshProUGUI TxtLevel;
     public TextMeshProUGUI TxtExp;
 
+    [Header("Record Panel")]
+    public GameObject PanelRecordObj;
+
     public Hero hero;
 
     private void Start()
@@ -57,6 +60,11 @@ public class SimulatorUI : MonoBehaviour
     {
         hero.Damage = HealValue;
         UpdateCondition();
+    }
+
+    public void Btn_Save()
+    {
+        PanelRecordObj.SetActive(true);
     }
 
     private int level;
