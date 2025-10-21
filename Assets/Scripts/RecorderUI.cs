@@ -81,8 +81,10 @@ public class RecorderUI : MonoBehaviour
             {
                 Name = Player.Name,
                 TotalExp = Player.TotalExp,
-                Strength = (Player.Strength.basicSTR, Player.Strength.bonusSTR),
-                Intelligence = (Player.Intelligence.basicINT, Player.Intelligence.bonusINT),
+                StrBase = Player.Strength.basicSTR,
+                StrBonus = Player.Strength.bonusSTR,
+                IntBase = Player.Intelligence.basicINT,
+                IntBonus = Player.Intelligence.bonusINT,
             },
             DateTime = DateTime.Now.ToString("yyyy-mm-dd hh:mm:ss"),
         };
