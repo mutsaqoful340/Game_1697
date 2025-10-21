@@ -13,6 +13,10 @@ public class Hero
     public UnitPoint MagicPoint;
     public float AttackPower;
     public float DefencePower;
+    public int StrBase;
+    public int StrBonus;
+    public int IntBase;
+    public int IntBonus;
     public int TotalExp;
 
     // Strenght (HealthPoint, AttackPower, DefencePower)
