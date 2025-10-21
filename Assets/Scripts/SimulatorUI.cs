@@ -65,6 +65,7 @@ public class SimulatorUI : MonoBehaviour
     public void Btn_Save()
     {
         PanelRecordObj.SetActive(true);
+        PanelRecordObj.GetComponent<RecorderUI>().Player = hero;
     }
 
     private int level;
