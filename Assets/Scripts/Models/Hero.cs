@@ -48,6 +48,17 @@ public class Hero
         TotalExp = 0;
     }
 
+    public Hero(int _str, int _int)
+    {
+        Uid = 1;
+        Name = "Nobel Knight";
+        Description = "A holy knight form a far land";
+        Speed = 5;
+        Strength = (_str, 0);
+        Intelligence = (_int, 0);
+        TotalExp = 0;
+    }
+
     public (int basicSTR, int bonusSTR) Strength 
     {  
         get
