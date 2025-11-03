@@ -30,10 +30,19 @@ public class UI_Selector : MonoBehaviour
             var record = JsonUtility.FromJson<Record>(json);
 
             Debug.Log(record);
+            PlayerPrefs.SetInt("GameSet", 1);
+            PlayerPrefs.SetInt("StrBase", record.Class.StrBase);
+            PlayerPrefs.SetInt("IntBase", record.Class.IntBase);
+            PlayerPrefs.SetInt("TotalExp", record.Class.TotalExp);
+            PlayerPrefs.SetInt("CurrentHP", record.Class.HealthPoint.Current);
+            PlayerPrefs.SetInt("MaxHP", record.Class.HealthPoint.Maximum);
+
+            confirmPanel.SetActive(true);
         }
     }
     public void OnClick_Play()
     {
+        PlayerPrefs.SetInt("GameSet", 0);
         SceneManager.LoadScene(2);
         Debug.Log("Pindah scene New Game");
     }
@@ -60,6 +69,7 @@ public class UI_Selector : MonoBehaviour
     {
         confirmPanel.SetActive(true);
         _slotNumber = 1;
+        LoadInfo(0);
         Debug.Log("Slot 1 clicked.");
     }
 
@@ -67,6 +77,7 @@ public class UI_Selector : MonoBehaviour
     {
         confirmPanel.SetActive(true);
         _slotNumber = 2;
+        LoadInfo(1);
         Debug.Log("Slot 2 clicked.");
     }
 
@@ -74,6 +85,7 @@ public class UI_Selector : MonoBehaviour
     {
         confirmPanel.SetActive(true);
         _slotNumber = 3;
+        LoadInfo(2);
         Debug.Log("Slot 3 clicked.");
     }
 
@@ -81,6 +93,7 @@ public class UI_Selector : MonoBehaviour
     {
         confirmPanel.SetActive(true);
         _slotNumber = 4;
+        LoadInfo(3);
         Debug.Log("Slot 4 clicked.");
     }
 
@@ -88,17 +101,21 @@ public class UI_Selector : MonoBehaviour
     {
         confirmPanel.SetActive(true);
         _slotNumber = 5;
+        LoadInfo(4);
         Debug.Log("Slot 5 clicked.");
     }
 
     public void OnClick_ConfirmYes()
     {
+        selectorPanel.SetActive(false);
         confirmPanel.SetActive(false);
         Debug.Log("Confirmed, data Number " + _slotNumber + " is loaded.");
+        SceneManager.LoadScene(2);
     }
 
     public void OnClick_ConfirmNo()
     {
+        selectorPanel.SetActive(false);
         confirmPanel.SetActive(false);
         Debug.Log("No.");
     }
