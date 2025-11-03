@@ -27,6 +27,19 @@ public class SimulatorUI : MonoBehaviour
     private void Start()
     {
         hero = new Hero();
+        if (PlayerPrefs.GetInt("GameSet") == 1)
+        {
+            hero = new Hero(PlayerPrefs.GetInt("StrBase"), PlayerPrefs.GetInt("IntBase"));
+            hero.TotalExp = PlayerPrefs.GetInt("TotalExp");
+            hero.HealthPoint.Maximum = PlayerPrefs.GetInt("MaxHP");
+            hero.HealthPoint.Current = PlayerPrefs.GetInt("CurrentHP");
+        }
+        else
+        {
+            hero = new Hero();
+        }
+
+        PlayerPrefs.DeleteAll();
         RefreshStatus();
         UpdateCondition();
         Debug.Log(level);
