@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerActive : MonoBehaviour {
     // Player input system
@@ -38,6 +39,9 @@ public class PlayerActive : MonoBehaviour {
     public bool IsStance;
     public bool IsAttack;
     public int IsClimb;
+
+    [Header("Content UI")]
+    public Transform ContentUI;
 
     public Quaternion CliffFace { get; set; }
 
@@ -245,12 +249,17 @@ public class PlayerActive : MonoBehaviour {
         body.Move(movespeed * Time.deltaTime * moveupdate);
     }
 
+    public UnityAction OnInteraction { get; set; }
+
     /// <summary>
     /// Action method is handler from input system event 
     /// </summary>
     /// <param name="State">Type of state (enumeration)</param>
     private void Action(ActionState State) {
         switch (State) {
+            case ActionState.Interaction:
+                OnInteraction?.Invoke();
+                break;
             case ActionState.Jump:
                 if (IsClimb == 1 && !IsRightArmed) {
                     // Match rotation between player and climb target
