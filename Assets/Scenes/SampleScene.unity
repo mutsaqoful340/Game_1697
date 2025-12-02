@@ -10116,11 +10116,17 @@ MonoBehaviour:
     Picture: Female
   - Speaker: Player
     Dialog: Greetings. Yes, I came a few days ago with a group of merchant. But we
-      got ambushed in the woods north of Listenburg
+      got ambushed in the woods north of Listenburg.
     Picture: Male
   - Speaker: NPC
     Dialog: Oh, poor souls. I'm sorry to hear that.
     Picture: Female
+  - Speaker: Yoho
+    Dialog: Oh, poor souls. I'm sorry to hear that.
+    Picture: Female
+  - Speaker: Sukma
+    Dialog: Oh, poor souls. I'm sorry to hear that.
+    Picture: Male
   IsOnceTime: 0
   IsWriting: 0
   IsCutscene: 0
