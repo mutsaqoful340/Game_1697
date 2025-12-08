@@ -76,13 +76,23 @@ public class DialogActive : MonoBehaviour {
                 var over = Sentences[Index].Speaker.Equals(Speaker.text);
                 var texture = Resources.Load<Sprite>("Texture/" + Sentences[Index].Picture);
 
-                Display_L.GetComponent<Image>().sprite = texture;
-                Display_R.GetComponent<Image>().sprite = texture;
-                if (!over) {
-                    flag = !flag;
-                    Display_L.gameObject.SetActive(flag);
-                    Display_R.gameObject.SetActive(!flag);
+                if (Sentences[Index].Picture != string.Empty)
+                {
+                    Display_L.GetComponent<Image>().sprite = texture;
+                    Display_R.GetComponent<Image>().sprite = texture;
+                    if (!over)
+                    {
+                        flag = !flag;
+                        Display_L.gameObject.SetActive(flag);
+                        Display_R.gameObject.SetActive(!flag);
+                    }
+                } 
+                else
+                {
+                    Display_L.gameObject.SetActive(false);
+                    Display_R.gameObject.SetActive(false);
                 }
+
 
                 StartCoroutine(WriteSentence());
             } else {
@@ -103,6 +113,7 @@ public class DialogActive : MonoBehaviour {
     }
 
     private void OnTriggerEnter(Collider collision) {
+        if (collision.CompareTag("Player"))
         //if (IsOnceTime) { // <-- Trigger langsung
         //    // Bisa tambahkan fungsi frezee player
         //    NextSentence();
@@ -111,7 +122,7 @@ public class DialogActive : MonoBehaviour {
     }
 
     private void OnTriggerExit(Collider collision) {
-        if (!IsOnceTime) {
+        if (collision.CompareTag("Player") && !IsOnceTime) {
             PlayerActive.Instance.OnInteraction -= NextSentence;
             Index = 0;
         }
