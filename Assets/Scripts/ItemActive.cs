@@ -10,6 +10,9 @@ public class ItemActive : MonoBehaviour
 {
     public PlayerActive player;
     public GameObject ContentUI;
+
+    [Header("Item Data")]
+    public Item _Item;
     
     //[SerializeField] private bool isShield;
     //[SerializeField] private bool isSword;
@@ -25,24 +28,24 @@ public class ItemActive : MonoBehaviour
     }
 
     private void Interaction_Handler()
-    {
-        var item = transform.GetChild(0);
-        var itemUI = transform.GetChild(1);
-
-
-        switch (state)
+    {if (_Item.IsEquipment)
         {
-            case ItemState.Sword:
-                item.SetParent(player.SlotPrimary);
-                itemUI.parent = ContentUI.transform;
-                break;
-            case ItemState.Shield:
-                item.SetParent(player.SlotSecond);
-                break;
+            var item = transform.GetChild(0);
+            switch (state)
+            {
+                case ItemState.Sword:
+                    item.SetParent(player.SlotPrimary);
+                    break;
+                case ItemState.Shield:
+                    item.SetParent(player.SlotSecond);
+                    break;
+            }
+            item.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+            player.Weapon = item;
         }
-
-        item.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-        player.Weapon = item;
+        var inventory = GameObject.FindWithTag("HUD").GetComponent<HudGuiActive>();
+        inventory.AddItem(_Item);
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)

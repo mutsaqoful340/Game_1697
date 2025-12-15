@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - ObjectA
+  - HUD
   layers:
   - Default
   - TransparentFX
