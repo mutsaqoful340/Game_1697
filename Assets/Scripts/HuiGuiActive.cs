@@ -13,7 +13,21 @@ public class HudGuiActive : MonoBehaviour
     {
         Inventories.Add(item);
         var slot = Resources.Load<GameObject>("ItemSlot");
-        slot.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = item.Name;
-        Instantiate(slot, ContentItem.transform);
+
+        if (item.IsEquipment)
+        {
+            slot.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = item.Name;
+            Instantiate(slot, ContentItem.transform);
+        }
+        else
+        {
+            foreach(var selected in Inventories)
+            {
+                if (selected == item)
+                {
+
+                }
+            }
+        }
     }
 }
