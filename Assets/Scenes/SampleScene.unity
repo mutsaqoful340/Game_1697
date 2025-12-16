@@ -5864,7 +5864,7 @@ MonoBehaviour:
   _Item:
     Name: Sword
     Slot: 0
-    IsEquipment: 0
+    IsEquipment: 1
   state: 0
 --- !u!1 &1082931862
 GameObject:
@@ -10635,7 +10635,7 @@ MonoBehaviour:
   _Item:
     Name: Shield
     Slot: 0
-    IsEquipment: 0
+    IsEquipment: 1
   state: 1
 --- !u!65 &1684585056
 BoxCollider:
